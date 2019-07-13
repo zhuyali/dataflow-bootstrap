@@ -1,0 +1,67 @@
+html, #app {
+  height: 100%;
+  background: #f5f5f5;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+.header > h1 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 100;
+  font-size: 80px;
+  color: rgba(175, 47, 47, 0.15);
+}
+
+.todo-contaienr {
+  width: 500px;
+}
+
+.ant-input {
+  padding-left: 34px!important;
+}
+
+.item .ant-input {
+  border-top: none;
+  border-radius: 0;
+  border-color: #ededed;
+}
+
+.item .ant-input:hover, .item .ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
+  border-color: #ededed;
+}
+
+.item .ant-input:focus, .item .ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
+  border-color: #ededed;
+  box-shadow: none;
+}
+
+.finished-item .ant-input {
+  color: #d9d9d9;
+  text-decoration: line-through;
+}
+
+.footer {
+  display: flex;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ededed;
+  border-top: none;
+}
+
+.footer > :first-child {
+  flex: 1;
+}
+
+.btn-group {
+  flex-basis: 224px;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
