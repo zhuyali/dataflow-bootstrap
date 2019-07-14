@@ -8,7 +8,7 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, './dist')
   },
   mode: 'production',
   module: {
@@ -21,15 +21,15 @@ module.exports = {
             presets: ['es2015', 'react'],
             plugins: [
               [
-                "import", { 
-                  libraryName: "antd", 
-                  style: "css" 
+                'import', {
+                  libraryName: 'antd',
+                  style: 'css'
                 }
               ]
             ]
           }
         },
-        exclude: /node_modules/,
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
@@ -41,12 +41,12 @@ module.exports = {
     ]
   },
   devServer: {
-    hot: true,
+    hot: true
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './index.template.html')
     }),
     new webpack.HotModuleReplacementPlugin()
-  ],
+  ]
 };
