@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server",
-    "build": "webpack",
+    "build": "NODE_ENV=production webpack -p",
+    "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint . --fix",
     "lint:css": "stylelint *.css --fix"
   },
@@ -22,6 +23,7 @@
     "eslint": "^6.0.1",
     "eslint-plugin-react": "^7.14.2",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.0.0",
     "style-loader": "^0.23.1",
     "stylelint": "^10.1.0",
     "webpack": "^4.35.3",
@@ -32,5 +34,10 @@
     "antd": "^3.20.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   }
 }
