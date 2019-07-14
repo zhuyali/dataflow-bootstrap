@@ -14,6 +14,6 @@ const uuid = function () {
   return uuid;
 };
 
-export { 
+export {
   uuid
 };

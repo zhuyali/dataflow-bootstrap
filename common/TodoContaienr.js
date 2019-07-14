@@ -8,20 +8,20 @@ import Footer from './Footer';
 class TodoContaienr extends React.Component {
   constructor (props) {
     super(props);
-    const todoList = JSON.parse(localStorage.getItem('todoList') || '[]');
-    const checkedList = todoList.filter((todoItem) => todoItem.status  === 'finished');
+    const todoList = JSON.parse(window.localStorage.getItem('todoList') || '[]');
+    const checkedList = todoList.filter((todoItem) => todoItem.status === 'finished');
     this.state = {
       value: '',
       statusChoice: 'all',
       checkAll: checkedList.length === todoList.length,
-      indeterminate: !!checkedList.length &&  checkedList.length < todoList.length,
-      todoList,
+      indeterminate: !!checkedList.length && checkedList.length < todoList.length,
+      todoList
     };
     this.addTodo = this.addTodo.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onRemoveItem = this.onRemoveItem.bind(this);
     this.onPressEnter = this.onPressEnter.bind(this);
-    this.clearCompleted= this.clearCompleted.bind(this);
+    this.clearCompleted = this.clearCompleted.bind(this);
     this.onStatusChange = this.onStatusChange.bind(this);
     this.onCheckAllChange = this.onCheckAllChange.bind(this);
     this.onStatusChoiceChange = this.onStatusChoiceChange.bind(this);
@@ -30,16 +30,16 @@ class TodoContaienr extends React.Component {
   onStatusChoiceChange (statusChoice) {
     this.setState({
       statusChoice
-    })
+    });
   }
 
   clearCompleted () {
-    const todoItemList = this.state.todoList.filter((todoItem) => todoItem.status  === 'todo');
+    const todoItemList = this.state.todoList.filter((todoItem) => todoItem.status === 'todo');
     this.isCheckAll(todoItemList);
     this.setState({
       todoList: todoItemList
     });
-    localStorage.setItem('todoList', JSON.stringify(todoItemList));
+    window.localStorage.setItem('todoList', JSON.stringify(todoItemList));
   }
 
   onRemoveItem (index) {
@@ -49,7 +49,7 @@ class TodoContaienr extends React.Component {
     this.setState({
       todoList
     });
-    localStorage.setItem('todoList', JSON.stringify(todoList));
+    window.localStorage.setItem('todoList', JSON.stringify(todoList));
   }
 
   onStatusChange (index) {
@@ -59,14 +59,14 @@ class TodoContaienr extends React.Component {
     this.setState({
       todoList
     });
-    localStorage.setItem('todoList', JSON.stringify(todoList));
+    window.localStorage.setItem('todoList', JSON.stringify(todoList));
   }
 
   isCheckAll (todoList) {
-    const checkedList = todoList.filter((todoItem) => todoItem.status  === 'finished');
+    const checkedList = todoList.filter((todoItem) => todoItem.status === 'finished');
     this.setState({
       checkAll: checkedList.length === todoList.length,
-      indeterminate: !!checkedList.length &&  checkedList.length < todoList.length
+      indeterminate: !!checkedList.length && checkedList.length < todoList.length
     });
   }
 
@@ -75,7 +75,7 @@ class TodoContaienr extends React.Component {
     this.setState({
       todoList
     });
-    localStorage.setItem('todoList', JSON.stringify(todoList));
+    window.localStorage.setItem('todoList', JSON.stringify(todoList));
   }
 
   onChange (e) {
@@ -106,34 +106,34 @@ class TodoContaienr extends React.Component {
     this.setState({
       todoList,
       indeterminate: false,
-      checkAll: e.target.checked,
+      checkAll: e.target.checked
     });
-    localStorage.setItem('todoList', JSON.stringify(todoList));
-  };
+    window.localStorage.setItem('todoList', JSON.stringify(todoList));
+  }
 
   componentWillMount () {
-    if (JSON.parse(localStorage.getItem('todoList') || '[]').length === 0) {
-      localStorage.setItem(name, '');
+    if (JSON.parse(window.localStorage.getItem('todoList') || '[]').length === 0) {
+      window.localStorage.setItem('todoList', '');
     }
   }
 
   render () {
     const { value, todoList, indeterminate, checkAll, statusChoice } = this.state;
-    const leftItemList = todoList.filter((todoItem) => todoItem.status  === 'todo');
+    const leftItemList = todoList.filter((todoItem) => todoItem.status === 'todo');
     return (
-      <div className="todo-contaienr">
-        <Input 
+      <div className='todo-contaienr'>
+        <Input
           value={value}
-          size="large"
-          placeholder="What needs to be done?" 
+          size='large'
+          placeholder='What needs to be done?'
           prefix={
             <Checkbox
               checked={checkAll}
               indeterminate={indeterminate}
-              onChange={this.onCheckAllChange}/>
+              onChange={this.onCheckAllChange} />
           }
           onChange={this.onChange}
-          onPressEnter={this.onPressEnter}/>
+          onPressEnter={this.onPressEnter} />
         <TodoList statusChoice={statusChoice} todoList={todoList} onStatusChange={this.onStatusChange} onRemoveItem={this.onRemoveItem} />
         <Footer leftNumber={leftItemList.length} onStatusChoiceChange={this.onStatusChoiceChange} clearCompleted={this.clearCompleted} />
       </div>
