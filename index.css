@@ -68,3 +68,7 @@ html,
   justify-content: space-around;
   text-align: center;
 }
+
+.todo-contaienr .ant-input-affix-wrapper .ant-input-prefix {
+  height: auto;
+}

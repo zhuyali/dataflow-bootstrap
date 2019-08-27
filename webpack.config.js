@@ -4,7 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    common: './common/index.js'
+    common: './common/index.js',
+    flux: './flux/index.js'
   },
   output: {
     filename: '[name].js',
@@ -44,7 +45,14 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, './index.template.html')
+      template: path.resolve(__dirname, './index.template.html'),
+      filename: 'flux.html',
+      chunks: ['flux']
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './index.template.html'),
+      filename: 'common.html',
+      chunks: ['common'] 
     }),
     new webpack.HotModuleReplacementPlugin()
   ]
